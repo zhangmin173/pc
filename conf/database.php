@@ -5,14 +5,6 @@ return [
     'type'            => 'mysql',
     // 数据库连接DSN配置
     'dsn'             => '',
-    // 服务器地址
-    'hostname'       => '114.55.29.42',
-    // 数据库名
-    'database'       => 'wechat_demo',
-    // 用户名
-    'username'       => 'admin',
-    // 密码
-    'password'       => 'weiyuan888',
     // 数据库连接端口
     'hostport'        => '',
     // 数据库连接参数
