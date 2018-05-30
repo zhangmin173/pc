@@ -5,8 +5,8 @@ use think\Db;
 class Page extends Base
 {
 
-
-	protected function before() {
+	protected function before() 
+	{
 
 		$this->db = Db::name('page_view');
 
