@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * 创建guid
+ */
 function guid(){
     if (function_exists('com_create_guid')){
         return com_create_guid();
@@ -16,6 +19,9 @@ function guid(){
     }
 }
 
+/**
+ * curl请求
+ */
 function http_curl($url, $data)
 {
     $curl = curl_init(); // 启动一个CURL会话

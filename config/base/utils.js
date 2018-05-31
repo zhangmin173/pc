@@ -81,7 +81,6 @@ function getPage(globPath, pathDir) {
       template: path.join(pathDir,file),      
       //template: path.join(pathDir,'../../src/common/layout/_index.html'),
       inject: false,
-      favicon: path.join(__dirname,'../../favicon.ico'),
       chunks: ['common/base',chunk],
       chunksSortMode: 'manual'
     };

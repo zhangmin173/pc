@@ -2,9 +2,9 @@ function mock() {
   let data = {
     success: true,
     data: {
-
+      
     },
-    msg: '请求成功'
+    msg: '成功'
   }
   return data
 }
