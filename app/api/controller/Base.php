@@ -15,7 +15,8 @@ class Base extends Controller
 
     protected function _initialize()
     {
-        if (!$this->auth()) {
+        
+        if ($this->auth()) {
             return $this->redirect('/home');
         }
         $this->before();
@@ -50,7 +51,10 @@ class Base extends Controller
      */
     protected function auth() {
         $request = Request::instance();
-        $this->pathinfo = $request->module().'/'.$request->controller().'/'.$request->action();
+        $this->request = [
+            'host' => $request->domain(),
+            'pathname' => $request->module().'/'.$request->controller().'/'.$request->action()
+        ];
         return false;
     }
 

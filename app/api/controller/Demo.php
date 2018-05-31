@@ -29,7 +29,7 @@ class Demo extends Base
         return $this->ajax($this->data);
     }
 
-    public function list()
+    public function page()
     {
         return $this->ajax($this->data);
     }

@@ -15,10 +15,10 @@ module.exports = {
     mobile: true,
     mode: 'production',
     filename: '[name].[hash:8].js',
-    publicPath: 'http://admin.nextdog.cc/Projects/WuYe/dist/',
+    publicPath: 'http://nextdog.cc/pc/',
     devtool: false,
     assets: {
-      publicPath: 'http://admin.nextdog.cc/Projects/WuYe/dist/assets/',
+      publicPath: 'http://nextdog.cc/pc/assets/',
       outputPath: 'assets/'
     }
   }

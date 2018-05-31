@@ -2,7 +2,7 @@
  * @Author: 张敏 
  * @Date: 2018-04-17 08:41:11 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-05-31 21:54:07
+ * @Last Modified time: 2018-05-31 22:44:28
  */
 
 /**
@@ -31,7 +31,7 @@ const Toolkit = (function () {
         }
       };
       if (window.location.href.indexOf('admin.nextdog.cc') > -1) {
-        _default.url = 'http://admin.nextdog.cc/Projects/WuYe/index.php/home' + _default.url
+        _default.url = 'http://nextdog.cc' + _default.url
       }
       $.ajax(_default);
     },
@@ -66,10 +66,10 @@ const Toolkit = (function () {
      * @param {*} key 
      * @param {*} type 
      */
-    uploadInit(obj, cb, type = 'assets', url = '/upload/add') {
+    uploadInit(obj, cb, type = 'assets', url = 'http://nextdog.cc/upload/add') {
       $("#" + obj).uploadifive({
         formData: { type: type },
-        fileObjName: 'postedFile',
+        fileObjName: 'postFile',
         removeCompleted: true,
         fileSizeLimit: '2048KB',
         buttonClass: 'upload-components',

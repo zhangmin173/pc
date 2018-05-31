@@ -2,11 +2,10 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-05-31 21:53:37
+ * @Last Modified time: 2018-05-31 23:06:43
  */
 
 import Toolkit from '../../components/toolkit';
-import Layer from '../../components/layer/index';
 
 import './index.less';
 
@@ -41,7 +40,7 @@ $(function () {
                     file: this.filePath
                 }
                 console.log(data);
-                if (!data.name || !data.mobile || data.mobile.length !== 13 || !data.file) {
+                if (!data.name || !data.mobile || data.mobile.length !== 11 || !data.file) {
                     alert('所有选项必须填写噢');
                     isAdd = false;
                     return false;
@@ -53,7 +52,7 @@ $(function () {
         }
         add(data) {
             Toolkit.ajax({
-                url: '/tian/add',
+                url: '/form/add',
                 data,
                 success: res => {
                     alert('提交成功');
