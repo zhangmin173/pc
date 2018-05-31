@@ -1,5 +1,5 @@
 <?php
-namespace app\web\controller;
+namespace app\index\controller;
 use think\Db;
 
 class Page extends Base
