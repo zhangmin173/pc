@@ -29,16 +29,57 @@ class Form extends Base
 
     public function update()
     {
+        $params = input('');
+        $params['update_time'] = $this->now();
+
+        if (!isset($params['id'])) {
+            $this->data['success'] = false;
+            $this->data['code'] = '1001';
+            return $this->ajax($this->data);
+        }
+
+        $this->data['data'] = $this->db->update($params);
         return $this->ajax($this->data);
     }
 
     public function delete()
     {
+        $params = input('');
+        $params['update_time'] = $this->now();
+        $params['is_delete'] = 1;
+
+        if (!isset($params['id'])) {
+            $this->data['success'] = false;
+            $this->data['code'] = '1001';
+            return $this->ajax($this->data);
+        }
+
+        $this->data['data'] = $this->db->update($params);
         return $this->ajax($this->data);
     }
 
     public function get()
     {
+        $params = input('');
+
+        if (!isset($params['id'])) {
+            $this->data['success'] = false;
+            $this->data['code'] = '1001';
+            return $this->ajax($this->data);
+        }
+
+        $map = [
+            'id' => $params['id'],
+            'is_delete' => 0
+        ];
+
+        $res = $this->db->where($map) ->find();
+        if (!$res) {
+            $this->data['code'] = '3001';
+        } else {
+            $this->data['data'] = $res;
+        }
+        
         return $this->ajax($this->data);
     }
 
@@ -74,9 +115,7 @@ class Form extends Base
             $params['order'] = 'create_time desc';
         }
 
-        $map = [
-            'is_delete' => 0
-        ];
+        $map['is_delete'] = 0;
 
         $db = $this->db->where($map);
         $this->data['total'] = $db->count();

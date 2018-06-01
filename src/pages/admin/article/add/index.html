@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= require('html-loader!../../../../common/layout/admin/_header.html') %>
+  <% if (htmlWebpackPlugin.files.favicon) { %>
+    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
+  <% } %>
+  <title>后台管理系统</title>
+  <% if (htmlWebpackPlugin.files.css.length == 1) { %>
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+  <% } %>
+  <% if (htmlWebpackPlugin.files.css.length == 2) { %>
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[1] %>">
+  <% } %>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>  
+</head>
+<body class="layui-layout-body">
+  <div class="layui-layout layui-layout-admin">
+    <%= require('html-loader!../../../../common/layout/admin/_nav.html') %>
+    <%= require('html-loader!../../../../common/layout/admin/_menu.html') %>
+    <div class="layui-body">
+      
+    </div>
+    <%= require('html-loader!../../../../common/layout/admin/_footer.html') %>
+  </div>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
+</body>
+</html>

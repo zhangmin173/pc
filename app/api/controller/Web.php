@@ -93,27 +93,42 @@ class Web extends Base
         $params = input('');
 
         if (!isset($params['pageIndex'])) {
-            
+            $params['pageIndex'] = 1;
         }
         if (!isset($params['pageSize'])) {
-            
+            $params['pageSize'] = 10;
+        }
+        if (!isset($params['order'])) {
+            $params['order'] = 'create_time desc';
         }
 
-        $map = [
-            'id' => $params['id'],
-            'is_delete' => 0
-        ];
+        $map['is_delete'] = 0;
+        if (isset($params['web_title'])) {
+            $map['web_title'] = ['like','%'.$params['web_title'].'%'];
+        }
 
-        $db = $this->db->where('pathname',$data['pathname']);
-		$pv = $db->count();
-		$pvToday = $db->whereTime('create_time', 'today')->count();
-        $res = $this->db->find($map);
-        $this->data['data'] = $res;
+        $db = $this->db->where($map);
+        $this->data['total'] = $db->count();
+        $this->data['data'] = $db->order($params['order'])->page($params['pageIndex'],$params['pageSize'])->select();
         return $this->ajax($this->data);
     }
 
     public function all()
     {
+        $params = input('');
+
+        if (!isset($params['order'])) {
+            $params['order'] = 'create_time desc';
+        }
+
+        $map['is_delete'] = 0;
+        if (isset($params['web_title'])) {
+            $map['web_title'] = ['like','%'.$params['web_title'].'%'];
+        }
+
+        $db = $this->db->where($map);
+        $this->data['total'] = $db->count();
+        $this->data['data'] = $db->order($params['order'])->select();
         return $this->ajax($this->data);
     }
 }
