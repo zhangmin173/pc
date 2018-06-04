@@ -19,7 +19,7 @@ class Form extends Base
 
         if (!$this->db->insert($params)) {
             $this->data['success'] = false;
-            $this->data['code'] = '2001';
+            $this->data['code'] = 2001;
             return $this->ajax($this->data);
         }
         
@@ -34,7 +34,7 @@ class Form extends Base
 
         if (!isset($params['id'])) {
             $this->data['success'] = false;
-            $this->data['code'] = '1001';
+            $this->data['code'] = 1001;
             return $this->ajax($this->data);
         }
 
@@ -50,7 +50,7 @@ class Form extends Base
 
         if (!isset($params['id'])) {
             $this->data['success'] = false;
-            $this->data['code'] = '1001';
+            $this->data['code'] = 1001;
             return $this->ajax($this->data);
         }
 
@@ -64,7 +64,7 @@ class Form extends Base
 
         if (!isset($params['id'])) {
             $this->data['success'] = false;
-            $this->data['code'] = '1001';
+            $this->data['code'] = 1001;
             return $this->ajax($this->data);
         }
 
@@ -75,7 +75,7 @@ class Form extends Base
 
         $res = $this->db->where($map) ->find();
         if (!$res) {
-            $this->data['code'] = '3001';
+            $this->data['code'] = 3001;
         } else {
             $this->data['data'] = $res;
         }
@@ -102,7 +102,7 @@ class Form extends Base
         ];
 
         $db = $this->db->where($map);
-        $this->data['total'] = $db->count();
+        $this->data['count'] = $this->data['total'] = $db->count();
         $this->data['data'] = $db->order($params['order'])->page($params['pageIndex'],$params['pageSize'])->select();
         return $this->ajax($this->data);
     }
@@ -118,7 +118,7 @@ class Form extends Base
         $map['is_delete'] = 0;
 
         $db = $this->db->where($map);
-        $this->data['total'] = $db->count();
+        $this->data['count'] = $this->data['total'] = $db->count();
         $this->data['data'] = $db->order($params['order'])->select();
         return $this->ajax($this->data);
     }

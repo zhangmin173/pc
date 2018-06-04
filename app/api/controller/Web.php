@@ -18,13 +18,13 @@ class Web extends Base
 
         if (!isset($params['web_title'])) {
             $this->data['success'] = false;
-            $this->data['code'] = '1001';
+            $this->data['code'] = 1001;
             return $this->ajax($this->data);
         }
 
         if (!$this->db->insert($params)) {
             $this->data['success'] = false;
-            $this->data['code'] = '2001';
+            $this->data['code'] = 2001;
             return $this->ajax($this->data);
         }
         
@@ -39,7 +39,7 @@ class Web extends Base
 
         if (!isset($params['id'])) {
             $this->data['success'] = false;
-            $this->data['code'] = '1001';
+            $this->data['code'] = 1001;
             return $this->ajax($this->data);
         }
 
@@ -55,7 +55,7 @@ class Web extends Base
 
         if (!isset($params['id'])) {
             $this->data['success'] = false;
-            $this->data['code'] = '1001';
+            $this->data['code'] = 1001;
             return $this->ajax($this->data);
         }
 
@@ -69,7 +69,7 @@ class Web extends Base
 
         if (!isset($params['id'])) {
             $this->data['success'] = false;
-            $this->data['code'] = '1001';
+            $this->data['code'] = 1001;
             return $this->ajax($this->data);
         }
 
@@ -80,7 +80,7 @@ class Web extends Base
 
         $res = $this->db->where($map) ->find();
         if (!$res) {
-            $this->data['code'] = '3001';
+            $this->data['code'] = 3001;
         } else {
             $this->data['data'] = $res;
         }

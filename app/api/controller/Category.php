@@ -18,7 +18,7 @@ class Category extends Base
 
         if (!isset($params['web_id'])) {
             $this->data['success'] = false;
-            $this->data['code'] = '1001';
+            $this->data['code'] = 1001;
             return $this->ajax($this->data);
         }
 
@@ -31,7 +31,7 @@ class Category extends Base
         $id = $this->db->insert($params);
         if (!$id) {
             $this->data['success'] = false;
-            $this->data['code'] = '2001';
+            $this->data['code'] = 2001;
             return $this->ajax($this->data);
         }
         
@@ -46,7 +46,7 @@ class Category extends Base
 
         if (!isset($params['id'])) {
             $this->data['success'] = false;
-            $this->data['code'] = '1001';
+            $this->data['code'] = 1001;
             return $this->ajax($this->data);
         }
 
@@ -62,7 +62,7 @@ class Category extends Base
 
         if (!isset($params['id'])) {
             $this->data['success'] = false;
-            $this->data['code'] = '1001';
+            $this->data['code'] = 1001;
             return $this->ajax($this->data);
         }
 
@@ -76,7 +76,7 @@ class Category extends Base
 
         if (!isset($params['id'])) {
             $this->data['success'] = false;
-            $this->data['code'] = '1001';
+            $this->data['code'] = 1001;
             return $this->ajax($this->data);
         }
 
@@ -87,7 +87,7 @@ class Category extends Base
 
         $res = $this->db->where($map) ->find();
         if (!$res) {
-            $this->data['code'] = '3001';
+            $this->data['code'] = 3001;
         } else {
             $this->data['data'] = $res;
         }
@@ -118,7 +118,7 @@ class Category extends Base
         }
 
         $db = $this->db->where($map);
-        $this->data['total'] = $db->count();
+        $this->data['count'] = $this->data['total'] = $db->count();
         $this->data['data'] = $db->order($params['order'])->page($params['pageIndex'],$params['pageSize'])->select();
         return $this->ajax($this->data);
     }
@@ -140,7 +140,7 @@ class Category extends Base
         }
 
         $db = $this->db->where($map);
-        $this->data['total'] = $db->count();
+        $this->data['count'] = $this->data['total'] = $db->count();
         $this->data['data'] = $db->order($params['order'])->select();
         return $this->ajax($this->data);
     }
