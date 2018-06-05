@@ -2,7 +2,7 @@
  * @Author: 张敏 
  * @Date: 2018-04-17 08:41:11 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-05-31 22:44:28
+ * @Last Modified time: 2018-06-05 08:42:43
  */
 
 /**
@@ -93,22 +93,6 @@ const Toolkit = (function () {
     getUrlParameter(name, path = window.location.href) {
       const result = decodeURIComponent((new RegExp('[?|&]' + name + '=([^&;]+?)(&|#|;|$)').exec(path) || [undefined, ''])[1].replace(/\+/g, '%20')) || null;
       return result ? result.split('/')[0] : '';
-    },
-    /**
-     * 手机号隐藏4位
-     * @param {手机号} tel 
-     */
-    mobile2show(tel) {
-      return tel.substr(0, 3) + '****' + tel.substr(7);;
-    },
-    /**
-     * 获取腾讯地图key
-     */
-    getMapInfo() {
-      return {
-        key: 'YL2BZ-2MRLU-HG7VH-B46PY-DMJW3-55FCV',
-        app: 'xiongwei'
-      };
     }
   }
 })();

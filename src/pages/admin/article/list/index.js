@@ -2,10 +2,11 @@
  * @Author: Zhang Min 
  * @Date: 2018-06-01 08:35:53 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-04 09:10:22
+ * @Last Modified time: 2018-06-05 09:02:14
  */
 
 import Toolkit from '../../../../components/toolkit';
+import Template from '../../../../../public/libs/artTemplate/index';
 
 $(function () {
     class Index {
@@ -14,7 +15,6 @@ $(function () {
             this.init()
         }
         init() {
-
             layui.table.render({
                 elem: '#tablePage',
                 height: 500,
@@ -30,29 +30,76 @@ $(function () {
                     ]
                 ]
             });
-            layui.table.on('tool(tablePage)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
-                var data = obj.data; //获得当前行数据
-                var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-                var tr = obj.tr; //获得当前行 tr 的DOM对象
-
+            layui.table.on('tool(tablePage)', obj => {
+                const row = obj.data; // 获得当前行数据
+                const layEvent = obj.event; // 获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+                const tr = obj.tr; // 获得当前行 tr 的DOM对象
                 if (layEvent === 'detail') { //查看
-                    //do somehing
+                    this.detail(row);
                 } else if (layEvent === 'del') { //删除
-                    layer.confirm('真的删除行么', function (index) {
-                        obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                    layer.confirm('真的删除行么', index => {
                         layer.close(index);
-                        //向服务端发送删除指令
+                        this.del(row, () => {
+                            obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                        });
                     });
                 } else if (layEvent === 'edit') { //编辑
-                    //do something
-
-                    //同步更新缓存对应的值
-                    obj.update({
-                        username: '123'
-                        , title: 'xxx'
-                    });
+                    this.edit(row, obj);
                 }
             });
+        }
+        detail(row) {
+            window.open('../detail/index.html?id=' + row.id);
+        }
+        edit(row, obj) {
+            const content = Template('tpl', row);
+            layer.open({
+                type: 1,
+                title: '编辑',
+                closeBtn: 0,
+                area: '800px',
+                shadeClose: true,
+                content
+            });
+            layui.laydate.render({
+                elem: '#laydate' //指定元素
+            });
+            layui.form.on('submit(editForm)', form => {
+                console.log(form.field);
+                this.update(form.field, () => {
+                    obj.update(form.field);
+                })
+                return false;
+            });
+
+        }
+        update(data, cb) {
+            Toolkit.ajax({
+                url: '/article/update',
+                data,
+                success: res => {
+                    if (res.success) {
+                        cb && cb(res);
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                }
+            })
+        }
+        del(row, cb) {
+            Toolkit.ajax({
+                url: '/article/delete',
+                data: {
+                    id: row.id
+                },
+                success: res => {
+                    if (res.success) {
+                        cb && cb(res);
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                }
+            })
         }
     }
 
