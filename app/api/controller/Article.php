@@ -113,9 +113,9 @@ class Article extends Base
             $map['category_ids'] = ['like','%'.$params['category_ids'].'%'];
         }
 
-        $db = $this->db->where($map);
-        $this->data['count'] = $this->data['total'] = $db->count();
-        $this->data['data'] = $db->order($params['order'])->page($params['pageIndex'],$params['pageSize'])->select();
+        $db = $this->db;
+        $this->data['count'] = $this->data['total'] = $db->where($map)->count();
+        $this->data['data'] = $db->where($map)->order($params['order'])->page($params['pageIndex'],$params['pageSize'])->select();
         return $this->ajax($this->data);
     }
 
@@ -139,9 +139,9 @@ class Article extends Base
             $map['category_ids'] = ['like','%'.$params['category_ids'].'%'];
         }
 
-        $db = $this->db->where($map);
-        $this->data['count'] = $this->data['total'] = $db->count();
-        $this->data['data'] = $db->order($params['order'])->select();
+        $db = $this->db;
+        $this->data['count'] = $this->data['total'] = $db->where($map)->count();
+        $this->data['data'] = $db->where($map)->order($params['order'])->select();
         return $this->ajax($this->data);
     }
 }

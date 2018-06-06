@@ -22,6 +22,9 @@
     <%= require('html-loader!../../../../common/layout/admin/_nav.html') %>
       <%= require('html-loader!../../../../common/layout/admin/_menu.html') %>
         <div class="layui-body">
+            <div class="layui-btn-group">
+              <button id="add" class="layui-btn">增加</button>
+            </div>
           <table id="tablePage" lay-filter="tablePage"></table>
         </div>
         <%= require('html-loader!../../../../common/layout/admin/_footer.html') %>
@@ -41,7 +44,7 @@
       <div class="layui-form-item hidden">
         <label class="layui-form-label">id</label>
         <div class="layui-input-block">
-          <input value="{{id}}" type="text" name="id" required  lay-verify="required" autocomplete="off" class="layui-input">
+          <input value="{{id}}" type="text" name="id" autocomplete="off" class="layui-input">
         </div>
       </div>
       <div class="layui-form-item">

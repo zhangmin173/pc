@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-06-01 08:35:53 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-06 20:34:34
+ * @Last Modified time: 2018-06-07 07:50:18
  */
 
 import Toolkit from '../../../../components/toolkit';
@@ -23,12 +23,14 @@ $(function () {
                 cols: [
                     [
                         { field: 'id', title: 'ID', width: 80, sort: true },
+                        { field: 'paraent_id', title: '上级栏目', width: 120 },
                         { field: 'category_icon', title: '栏目icon', width: 200 },
                         { field: 'category_title', title: '栏目名称' },
                         { title: '操作', fixed: 'right', width: 180, align: 'center', toolbar: '#tableBar' }
                     ]
                 ]
             });
+            
             layui.table.on('tool(tablePage)', obj => {
                 const row = obj.data; // 获得当前行数据
                 const layEvent = obj.event; // 获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
@@ -46,6 +48,10 @@ $(function () {
                     this.edit(row, obj);
                 }
             });
+
+            $('#add').on('click', () => {
+                this.edit({}, false);
+            })
         }
         detail(row) {
             window.open('../detail/index.html?id=' + row.id);
@@ -68,13 +74,34 @@ $(function () {
                     formData.paraent_id = 0;
                 }
                 console.log(formData);
-                this.update(formData, () => {
-                    obj.update(formData);
-                    layer.close(layerIndex);
-                })
+                if (formData.id) {
+                    this.update(formData, () => {
+                        obj && obj.update(formData);
+                        layer.close(layerIndex);
+                    })
+                } else {
+                    delete formData.id;
+                    this.add(formData, () => {
+                        layer.close(layerIndex);
+                        window.location.reload();
+                    })
+                }
                 return false;
             });
 
+        }
+        add(data, cb) {
+            Toolkit.ajax({
+                url: '/category/add',
+                data,
+                success: res => {
+                    if (res.success) {
+                        cb && cb(res);
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                }
+            })
         }
         update(data, cb) {
             Toolkit.ajax({

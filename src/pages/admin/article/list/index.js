@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-06-01 08:35:53 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-06 20:11:00
+ * @Last Modified time: 2018-06-07 07:31:49
  */
 
 import Toolkit from '../../../../components/toolkit';
@@ -53,6 +53,10 @@ $(function () {
             }, data => {
                 this.categoryParaent = data;
             })
+            
+            $('#add').on('click', () => {
+                this.edit({}, false);
+            })
         }
         detail(row) {
             window.open('../detail/index.html?id=' + row.id);
@@ -89,6 +93,9 @@ $(function () {
             let category_parent_id = 0;
             layui.form.on('select(category_parent_id)', data => {
                 category_parent_id = data.value;
+                if (!category_parent_id) {
+                    return false;
+                }
                 this.getcategory({
                     paraent_id: category_parent_id
                 }, data => {
@@ -101,17 +108,36 @@ $(function () {
             layui.form.on('submit(editForm)', form => {
                 const formData = form.field;
                 formData.content = editor.txt.html();
-                if (category_parent_id) {
-                    formData.category_parent_id = category_parent_id;
-                }
+                formData.category_ids = ';' + category_id + ';;' + category_parent_id + ';';
                 console.log(formData);
-                this.update(formData, () => {
-                    obj.update(formData);
-                    layer.close(layerIndex);
-                })
+                if (formData.id) {
+                    this.update(formData, () => {
+                        obj && obj.update(formData);
+                        layer.close(layerIndex);
+                    })
+                } else {
+                    delete formData.id;
+                    this.add(formData, () => {
+                        layer.close(layerIndex);
+                        window.location.reload();
+                    })
+                }
                 return false;
             });
 
+        }
+        add(data, cb) {
+            Toolkit.ajax({
+                url: '/article/add',
+                data,
+                success: res => {
+                    if (res.success) {
+                        cb && cb(res);
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                }
+            })
         }
         update(data, cb) {
             Toolkit.ajax({
