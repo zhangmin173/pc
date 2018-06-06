@@ -25,7 +25,8 @@ function mock() {
             }
         ],
         msg: '成功',
-        total: 100
+        total: 100,
+        count: 100
     }
     return data
 }

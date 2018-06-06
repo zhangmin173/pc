@@ -2,7 +2,7 @@ function mock() {
   let data = {
     success: true,
     data: {
-      file_path: '123'
+      file_path: '//nextdog.cc/public/assets/bg.jpeg'
     },
     msg: '成功'
   }
