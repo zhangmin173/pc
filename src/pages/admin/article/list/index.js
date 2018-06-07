@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-06-01 08:35:53 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-07 09:00:31
+ * @Last Modified time: 2018-06-07 09:06:37
  */
 
 import Toolkit from '../../../../components/toolkit';
@@ -99,6 +99,7 @@ $(function () {
                 done: function (res) {
                     if (res.success) {
                         $('#thumb').val(res.data.file_path);
+                        $('#thumbView').attr('src', res.data.file_path);
                     }
                 }
             });
