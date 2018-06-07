@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-06-01 08:35:53 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-07 07:50:18
+ * @Last Modified time: 2018-06-07 08:42:06
  */
 
 import Toolkit from '../../../../components/toolkit';
@@ -30,7 +30,7 @@ $(function () {
                     ]
                 ]
             });
-            
+
             layui.table.on('tool(tablePage)', obj => {
                 const row = obj.data; // 获得当前行数据
                 const layEvent = obj.event; // 获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
@@ -67,6 +67,14 @@ $(function () {
                 content
             });
             layer.full(layerIndex);
+            this.getcategory({
+                paraent_id: 0
+            }, data => {
+                const htmlStr = Template('tpl1', { data });
+                $('#paraent_id').html(htmlStr);
+                $("#paraent_id").val(row.paraent_id);
+                layui.form.render('select');
+            })
 
             layui.form.on('submit(editForm)', form => {
                 const formData = form.field;

@@ -5,8 +5,8 @@ function mock() {
         data: [
             {
                 id: 1,
-                category_id: 1,
-                category_ids: ';1;;2;',
+                category_id: 3,
+                category_ids: '1;3',
                 title: '这是一篇好文章',
                 author: 'zhangmin',
                 show_time: '2018-06-08',
@@ -18,8 +18,8 @@ function mock() {
             },
             {
                 id: 2,
-                category_id: 1,
-                category_ids: ';1;;2;',
+                category_id: 3,
+                category_ids: '1;3',
                 title: '这是一篇好文章',
                 author: 'zhangmin',
                 show_time: '2018-06-08',
@@ -31,8 +31,8 @@ function mock() {
             },
             {
                 id: 3,
-                category_id: 1,
-                category_ids: ';1;;2;',
+                category_id: 3,
+                category_ids: '1;3',
                 title: '这是一篇好文章',
                 author: 'zhangmin',
                 show_time: '2018-06-08',
@@ -44,8 +44,8 @@ function mock() {
             },
             {
                 id: 4,
-                category_id: 1,
-                category_ids: ';1;;2;',
+                category_id: 3,
+                category_ids: '1;3',
                 title: '这是一篇好文章',
                 author: 'zhangmin',
                 show_time: '2018-06-08',
@@ -57,8 +57,8 @@ function mock() {
             },
             {
                 id: 5,
-                category_id: 1,
-                category_ids: ';1;;2;',
+                category_id: 3,
+                category_ids: '1;3',
                 title: '这是一篇好文章',
                 author: 'zhangmin',
                 show_time: '2018-06-08',

@@ -13,6 +13,7 @@ class Article extends Base
     {   
         $params = input('');
         $params['id'] = $this->createGuid();
+        $params['web_id'] = 'C4C54850-46A1-BE67-14E5-79D1AF46FC48';
         $params['create_time'] = $this->now();
         $params['update_time'] = $this->now();
 

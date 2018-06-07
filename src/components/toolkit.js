@@ -2,7 +2,7 @@
  * @Author: 张敏 
  * @Date: 2018-04-17 08:41:11 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-05 08:42:43
+ * @Last Modified time: 2018-06-07 08:51:38
  */
 
 /**
@@ -93,6 +93,12 @@ const Toolkit = (function () {
     getUrlParameter(name, path = window.location.href) {
       const result = decodeURIComponent((new RegExp('[?|&]' + name + '=([^&;]+?)(&|#|;|$)').exec(path) || [undefined, ''])[1].replace(/\+/g, '%20')) || null;
       return result ? result.split('/')[0] : '';
+    },
+    /**
+     * 字符串转数组
+     */
+    str2arr(str, unit) {
+      return str.split(unit);
     }
   }
 })();

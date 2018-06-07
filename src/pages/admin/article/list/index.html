@@ -56,7 +56,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">大类</label>
         <div class="layui-input-block">
-          <select name="category_parent_id" lay-verify="required" lay-filter="category_parent_id">
+          <select id="category_paraent_id" name="category_paraent_id" lay-verify="required" lay-filter="category_paraent_id">
             <option value=""></option>
             {{each categoryParaent as item}}
             <option value="{{item.id}}">{{item.category_title}}</option>
@@ -92,7 +92,6 @@
           </button>
         </div>
       </div>
-      
       <div class="layui-form-item">
         <label class="layui-form-label">作者</label>
         <div class="layui-input-block">
@@ -109,6 +108,12 @@
         <label class="layui-form-label">文章内容</label>
         <div class="layui-input-block">
           <div id="editor"></div>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">外链</label>
+        <div class="layui-input-block">
+          <input value="{{link}}" type="text" name="link" autocomplete="off" class="layui-input">
         </div>
       </div>
       <div class="layui-form-item">

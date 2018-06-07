@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-06-01 08:35:53 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-07 07:31:49
+ * @Last Modified time: 2018-06-07 09:00:31
  */
 
 import Toolkit from '../../../../components/toolkit';
@@ -73,6 +73,21 @@ $(function () {
                 content
             });
             layer.full(layerIndex);
+            if (row.category_ids) {
+                row.category_paraent_id = Toolkit.str2arr(row.category_ids, ';')[0];
+                $("#category_paraent_id").val(row.category_paraent_id);
+                this.getcategory({
+                    paraent_id: row.category_paraent_id
+                }, data => {
+                    const htmlStr = Template('tpl1', { data });
+                    $('#category_id').html(htmlStr);
+                    if (row.category_id) {
+                        $("#category_id").val(row.category_id);
+                    }
+                    layui.form.render('select');
+                })
+                layui.form.render('select');
+            }
             layui.form.render();
             layui.laydate.render({
                 elem: '#laydate' //指定元素
@@ -90,14 +105,14 @@ $(function () {
             const editor = this.initEditor();
             editor.txt.html(row.content);
 
-            let category_parent_id = 0;
-            layui.form.on('select(category_parent_id)', data => {
-                category_parent_id = data.value;
-                if (!category_parent_id) {
+            let category_paraent_id = 0;
+            layui.form.on('select(category_paraent_id)', data => {
+                category_paraent_id = data.value;
+                if (!category_paraent_id) {
                     return false;
                 }
                 this.getcategory({
-                    paraent_id: category_parent_id
+                    paraent_id: category_paraent_id
                 }, data => {
                     const htmlStr = Template('tpl1', { data });
                     $('#category_id').html(htmlStr);
@@ -108,7 +123,9 @@ $(function () {
             layui.form.on('submit(editForm)', form => {
                 const formData = form.field;
                 formData.content = editor.txt.html();
-                formData.category_ids = ';' + category_id + ';;' + category_parent_id + ';';
+                formData.category_ids = formData.category_paraent_id + ';' + formData.category_id;
+                delete formData.postFile;
+                delete formData.category_paraent_id;
                 console.log(formData);
                 if (formData.id) {
                     this.update(formData, () => {

@@ -35,7 +35,7 @@
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
   </script>
   <script type="text/html" id="tpl">
-    <form class="layui-form edit-form">
+    <form class="layui-form edit-form" lay-filter="editorForm">
       <div class="layui-form-item hidden">
         <label class="layui-form-label">id</label>
         <div class="layui-input-block">
@@ -45,7 +45,9 @@
       <div class="layui-form-item">
         <label class="layui-form-label">上级栏目</label>
         <div class="layui-input-block">
-          <input value="{{paraent_id}}" type="text" name="paraent_id" required  lay-verify="required" autocomplete="off" class="layui-input">
+          <select id="paraent_id" name="paraent_id" lay-filter="paraent_id">
+            
+          </select>
         </div>
       </div>
       <div class="layui-form-item">

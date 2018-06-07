@@ -18,8 +18,8 @@ function mock() {
             },
             {
                 id: 3,
-                paraent_id: 0,
-                category_title: '大类3',
+                paraent_id: 1,
+                category_title: '大类1-1',
                 category_icon: '',
                 create_time: '2018-06-10'
             }
