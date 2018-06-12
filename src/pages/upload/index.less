@@ -1,9 +1,9 @@
 #app {
-    padding: 20px;
     height: 100%;
     box-sizing: border-box;
     background-repeat: no-repeat;
     background-size: 100%;
+    background-color: rgba(255,255,255,.7);
 
     .title {
         text-align: center;
@@ -11,9 +11,14 @@
     }
 
     .form-components {
+        margin: 0 auto;
+        background-color: #fff;
+        width: 700px;
+        padding: 40px;
+        box-sizing: border-box;
 
         .form-group {
-            margin-bottom: 80px;
+            margin-bottom: 40px;
 
             label {
                 display: inline-block;
@@ -26,14 +31,14 @@
             input[type='text'] {
                 display: inline-block;
                 padding: 10px;
-                width: 200px;
+                width: 400px;
                 box-sizing: border-box;
                 height: 48px;
                 line-height: 48px;
-                border: 1px solid #eee;
+                border: 1px solid rgb(59, 139, 231);
                 border-radius: 6px;
                 outline: 0;
-                background-color: #fff;
+                background-color: #eee;
                 font-size: 22px;
                 color: #595959;
             }
@@ -41,28 +46,33 @@
             select {
                 display: inline-block;
                 padding: 10px;
-                width: 200px;
+                width: 400px;
                 box-sizing: border-box;
                 height: 48px;
                 line-height: 48px;
-                border: 1px solid #eee;
+                border: 1px solid rgb(59, 139, 231);
                 border-radius: 6px;
                 outline: 0;
-                background-color: #fff;
+                background-color: #eee;
                 font-size: 22px;
                 color: #595959;
             }
 
-            span {
-                font-size: 16px;
-                color: rgb(59, 139, 231);
+            &.upload {
+                position: relative;
+
+                label {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
             }
         }
 
         .btn {
             display: block;
             margin: 0 auto;
-            width: 150px;
+            width: 420px;
             height: 48px;
             line-height: 48px;
             text-align: center;
@@ -75,16 +85,21 @@
     }
 
     .upload-components {
+        position: absolute;
+        left: 155px;
         display: inline-block;
-        width: 200px!important;
+        width: 400px!important;
         height: 48px!important;
         line-height: 48px!important;
         background-color: #eee;
+        border-radius: 6px;
+        border: 1px solid rgb(59, 139, 231)!important;
 
         input[type='file'] {
             left: 0!important;
             top: 0!important;
-            width: 200px!important;
+            border-radius: 6px;
+            width: 400px!important;
             height: 48px!important;
             box-sizing: border-box;
         }

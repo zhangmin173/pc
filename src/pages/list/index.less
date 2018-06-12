@@ -1,7 +1,9 @@
 #app {
-    padding: 20px;
     height: 100%;
     box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: rgba(255,255,255,.7);
 
     .title {
         text-align: center;
@@ -11,25 +13,40 @@
 }
 
 #list {
-    padding: 0;
+    padding: 40px;
+    margin: 0 auto;
+    background-color: #fff;
+    width: 700px;
+    box-sizing: border-box;
 
     .list-item {
         list-style: none;
+        padding: 10px 0;
         margin-bottom: 10px;
+        border-bottom: 1px solid #000;
+
+        &:first-child {
+            border-top: 2px solid #000;
+
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+        }
 
         .name {
             display: inline-block;
-            width: 100px;
+            width: 150px;
         }
 
         .mobile {
             display: inline-block;
-            margin-right: 20px;
+            width: 200px;
         }
 
         .type {
             display: inline-block;
-            width: 100px;
+            width: 150px;
         }
 
         .file {

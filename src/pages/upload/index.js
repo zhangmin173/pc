@@ -2,11 +2,11 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-05-31 23:06:43
+ * @Last Modified time: 2018-06-12 22:34:18
  */
 
 import Toolkit from '../../components/toolkit';
-
+import bgImg from '../../common/images/bg.jpg';
 import './index.less';
 
 $(function () {
@@ -18,6 +18,7 @@ $(function () {
             this.init();
         }
         init() {
+            $('body').css('background-image',`url('${bgImg}')`);
             this.createDom(this.typelist);
             Toolkit.uploadInit('file',data => {
                 this.filePath = data.file_path;
@@ -60,7 +61,7 @@ $(function () {
             })
         }
         createDom(arr) {
-            let htmlStr = '';
+            let htmlStr = '<option value="0">请选择</option>';
             for (let index = 0; index < arr.length; index++) {
                 const val = arr[index];
                 htmlStr += `<option value="${val}">${val}</option>`;
