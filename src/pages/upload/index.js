@@ -2,11 +2,10 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-12 22:34:18
+ * @Last Modified time: 2018-06-12 22:52:06
  */
 
 import Toolkit from '../../components/toolkit';
-import bgImg from '../../common/images/bg.jpg';
 import './index.less';
 
 $(function () {
@@ -18,7 +17,6 @@ $(function () {
             this.init();
         }
         init() {
-            $('body').css('background-image',`url('${bgImg}')`);
             this.createDom(this.typelist);
             Toolkit.uploadInit('file',data => {
                 this.filePath = data.file_path;

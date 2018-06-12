@@ -2,11 +2,10 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-12 22:40:33
+ * @Last Modified time: 2018-06-12 22:49:02
  */
 
 import Toolkit from '../../components/toolkit';
-import bgImg from '../../common/images/bg.jpg';
 import './index.less';
 
 $(function () {
@@ -16,7 +15,6 @@ $(function () {
             this.init();
         }
         init() {
-            $('body').css('background-image',`url('${bgImg}')`);
             this.getList(data => {
                 let htmlStr = `<li class="list-item">
                     <span class="name">姓名</span>
