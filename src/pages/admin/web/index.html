@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%= require('html-loader!../../../common/layout/admin/_header.html') %>
+    <% if (htmlWebpackPlugin.files.favicon) { %>
+      <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
+      <% } %>
+        <title>后台管理系统</title>
+        <% if (htmlWebpackPlugin.files.css.length == 1) { %>
+          <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+          <% } %>
+            <% if (htmlWebpackPlugin.files.css.length == 2) { %>
+              <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+              <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[1] %>">
+              <% } %>
+                <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>
+</head>
+
+<body class="layui-layout-body">
+  <div class="layui-layout layui-layout-admin">
+    <%= require('html-loader!../../../common/layout/admin/_nav.html') %>
+      <%= require('html-loader!../../../common/layout/admin/_menu.html') %>
+        <div id="app" class="layui-body">
+            <h1>loading...</h1>
+        </div>
+        <%= require('html-loader!../../../common/layout/admin/_footer.html') %>
+  </div>
+  <script type="text/html" id="tpl">
+    <form class="layui-form edit-form">
+      <div class="layui-form-item hidden">
+        <label class="layui-form-label">id</label>
+        <div class="layui-input-block">
+          <input value="{{id}}" type="text" name="id" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">网站组织</label>
+        <div class="layui-input-block">
+          <input value="{{web_organization}}" type="text" name="web_organization" required  lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">网站名称</label>
+        <div class="layui-input-block">
+          <input value="{{web_title}}" type="text" name="web_title" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+          <label class="layui-form-label">版权信息</label>
+          <div class="layui-input-block">
+            <input value="{{web_copyright}}" type="text" name="web_copyright" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+        <div class="layui-form-item hidden">
+            <label class="layui-form-label">网站logo</label>
+            <div class="layui-input-block">
+              <input id="webLogo" value="{{web_logo}}" type="text" name="web_logo" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">网站logo</label>
+            <div class="layui-input-block">
+              <img id="webLogoView" src="{{webLogo}}" alt="">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-block">
+              <button type="button" class="layui-btn" id="uploadWebLogo">
+                <i class="layui-icon">&#xe67c;</i>上传
+              </button>
+            </div>
+          </div>
+      <div class="layui-form-item hidden">
+        <label class="layui-form-label">网站头图</label>
+        <div class="layui-input-block">
+          <input id="webHeadBg" value="{{web_head_bg}}" type="text" name="web_head_bg" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">网站头图</label>
+        <div class="layui-input-block">
+          <img id="webHeadBgView" src="{{webHeadBg}}" alt="">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-block">
+          <button type="button" class="layui-btn" id="uploadWebHeadBg">
+            <i class="layui-icon">&#xe67c;</i>上传
+          </button>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="layui-btn" lay-submit lay-filter="editForm">保存</button>
+        </div>
+      </div>
+    </form>   
+  </script>
+  <script type="text/html" id="tpl1">
+    <option value=""></option>
+    {{ each data as item }}
+    <option value="{{item.id}}">{{item.category_title}}</option>
+    {{/each}}
+  </script>
+  <script src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
+</body>
+
+</html>

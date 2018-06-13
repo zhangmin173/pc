@@ -1,5 +1,5 @@
 <?php
-namespace app\api\controller;
+namespace app\home\controller;
 use think\Db;
 
 class Article extends Base
@@ -7,61 +7,6 @@ class Article extends Base
     public function before()
 	{
 		$this->db = Db::name('article');
-    }
-    
-    public function add()
-    {   
-        $params = input('');
-        $params['id'] = $this->createGuid();
-        $params['web_id'] = $this->user['web_info']['id'];
-        $params['create_time'] = $this->now();
-        $params['update_time'] = $this->now();
-
-        if (!isset($params['category_ids'])) {
-            $this->data['success'] = false;
-            $this->data['code'] = 1001;
-            return $this->ajax($this->data);
-        }
-
-        if (!$this->db->insert($params)) {
-            $this->data['success'] = false;
-            $this->data['code'] = 2001;
-            return $this->ajax($this->data);
-        }
-        
-        $this->data['data'] = $this->db->where('id',$params['id'])->find();
-        return $this->ajax($this->data);
-    }
-
-    public function update()
-    {
-        $params = input('');
-        $params['update_time'] = $this->now();
-
-        if (!isset($params['id'])) {
-            $this->data['success'] = false;
-            $this->data['code'] = 1001;
-            return $this->ajax($this->data);
-        }
-
-        $this->data['data'] = $this->db->update($params);
-        return $this->ajax($this->data);
-    }
-
-    public function delete()
-    {
-        $params = input('');
-        $params['update_time'] = $this->now();
-        $params['is_delete'] = 1;
-
-        if (!isset($params['id'])) {
-            $this->data['success'] = false;
-            $this->data['code'] = 1001;
-            return $this->ajax($this->data);
-        }
-
-        $this->data['data'] = $this->db->update($params);
-        return $this->ajax($this->data);
     }
 
     public function get()
@@ -113,6 +58,9 @@ class Article extends Base
         if (isset($params['category_ids'])) {
             $map['category_ids'] = ['like','%'.$params['category_ids'].'%'];
         }
+        if (isset($params['category_id'])) {
+            $map['category_ids'] = $params['category_id'];
+        }
 
         $db = $this->db;
         $this->data['count'] = $this->data['total'] = $db->where($map)->count();
@@ -138,6 +86,9 @@ class Article extends Base
         }
         if (isset($params['category_ids'])) {
             $map['category_ids'] = ['like','%'.$params['category_ids'].'%'];
+        }
+        if (isset($params['category_id'])) {
+            $map['category_ids'] = $params['category_id'];
         }
 
         $db = $this->db;

@@ -1,5 +1,5 @@
 <?php
-namespace app\api\controller;
+namespace app\home\controller;
 use think\Db;
 
 class Web extends Base
@@ -8,57 +8,16 @@ class Web extends Base
 	{
 		$this->db = Db::name('web');
     }
-    
-    public function add()
-    {   
-        $params = input('');
-        $params['id'] = $this->createGuid();
-        $params['create_time'] = $this->now();
-        $params['update_time'] = $this->now();
-
-        if (!isset($params['web_title'])) {
-            $this->data['success'] = false;
-            $this->data['code'] = 1001;
-            return $this->ajax($this->data);
-        }
-
-        if (!$this->db->insert($params)) {
-            $this->data['success'] = false;
-            $this->data['code'] = 2001;
-            return $this->ajax($this->data);
-        }
-        
-        $this->data['data'] = $this->db->where('id',$params['id'])->find();
-        return $this->ajax($this->data);
-    }
-
-    public function update()
-    {
-        $params = input('');
-        $params['update_time'] = $this->now();
-        $params['id'] = $this->user['web_info']['id'];
-
-        $this->data['data'] = $this->db->update($params);
-        return $this->ajax($this->data);
-    }
-
-    public function delete()
-    {
-        $params = input('');
-        $params['update_time'] = $this->now();
-        $params['is_delete'] = 1;
-
-        $params['id'] = $this->user['web_info']['id'];
-
-        $this->data['data'] = $this->db->update($params);
-        return $this->ajax($this->data);
-    }
 
     public function get()
     {
         $params = input('');
 
-        $params['id'] = $this->user['web_info']['id'];
+        if (!isset($params['id'])) {
+            $this->data['success'] = false;
+            $this->data['code'] = 1001;
+            return $this->ajax($this->data);
+        }
 
         $map = [
             'id' => $params['id'],

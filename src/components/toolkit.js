@@ -2,7 +2,7 @@
  * @Author: 张敏 
  * @Date: 2018-04-17 08:41:11 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-07 08:51:38
+ * @Last Modified time: 2018-06-14 00:41:59
  */
 
 /**
@@ -30,7 +30,7 @@ const Toolkit = (function () {
           options.complete && options.complete();
         }
       };
-      if (window.location.href.indexOf('admin.nextdog.cc') > -1) {
+      if (window.location.href.indexOf('nextdog.cc') > -1) {
         _default.url = 'http://nextdog.cc' + _default.url
       }
       $.ajax(_default);

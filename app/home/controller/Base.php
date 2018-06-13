@@ -1,5 +1,5 @@
 <?php
-namespace app\api\controller;
+namespace app\home\controller;
 use think\Controller;
 use think\Request;
 use think\Db;
@@ -13,15 +13,8 @@ class Base extends Controller
         'data' => null
     ];
 
-    protected $user = [];
-
     protected function _initialize()
     {
-        $this->user['web_info'] = $this->getWebInfo();
-        
-        if ($this->auth()) {
-            return $this->redirect('/home');
-        }
         $this->before();
     }
 
@@ -51,45 +44,10 @@ class Base extends Controller
     }
 
     /**
-     * 权限验证
-     */
-    protected function auth() 
-    {
-        $request = Request::instance();
-        $this->request = [
-            'host' => $request->domain(),
-            'pathname' => $request->module().'/'.$request->controller().'/'.$request->action()
-        ];
-        return false;
-    }
-
-    /**
      * 当前时间
      */
     protected function now() 
     {
         return date('Y-m-d h:i:s', time());
-    }
-
-    /**
-     * 创建guid
-     */
-    protected function createGuid() 
-    {
-        return guid();
-    }
-
-    protected function getLoginInfo()
-    {
-        return [
-            'name' => 'zhangmin'
-        ];
-    }
-
-    protected function getWebInfo()
-    {
-        return [
-            'id' => 'C4C54850-46A1-BE67-14E5-79D1AF46FC48'
-        ];
     }
 }

@@ -18,12 +18,6 @@ class Login extends Base
 	protected function getInfo($token)
 	{
 
-		$time = date('YmdHis');
-		$sign = md5($this->servicecode.$this->servicepwd.$time);
-		$url = 'https://puser.zjzwfw.gov.cn/sso/servlet/simpleauth?method=getUserInfo&servicecode='.$this->servicecode.'&time='.$time.'&sign='.$sign.'&datatype=json&token='.$token;
-
-
-		return json_decode($this->postUrl($url,[]),true);
 	}
 
 	protected function register($user)
