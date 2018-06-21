@@ -13,14 +13,14 @@ class Web extends Base
     {
         $params = input('');
 
-        if (!isset($params['id'])) {
+        if (!isset($params['web_id'])) {
             $this->data['success'] = false;
             $this->data['code'] = 1001;
             return $this->ajax($this->data);
         }
 
         $map = [
-            'id' => $params['id'],
+            'id' => $params['web_id'],
             'is_delete' => 0
         ];
 

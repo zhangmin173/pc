@@ -2,11 +2,13 @@
  * @Author: Zhang Min 
  * @Date: 2018-06-01 08:35:53 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-21 21:55:28
+ * @Last Modified time: 2018-06-21 23:15:18
  */
 
 import Toolkit from '../../../../components/toolkit';
 import Template from '../../../../../public/libs/artTemplate/index';
+
+import '../../../../common/css/_tree.less';
 
 $(function () {
     class Index {
@@ -15,46 +17,26 @@ $(function () {
             this.init()
         }
         init() {
-            layui.table.render({
-                elem: '#tablePage',
-                height: 500,
-                url: '/category/page',
-                page: true,
-                cols: [
-                    [
-                        { field: 'id', title: 'ID', width: 80, sort: true },
-                        { field: 'paraent_id', title: '上级栏目', width: 120 },
-                        { field: 'category_icon', title: '栏目icon', width: 200 },
-                        { field: 'category_title', title: '栏目名称' },
-                        { title: '操作', fixed: 'right', width: 180, align: 'center', toolbar: '#tableBar' }
-                    ]
-                ]
-            });
-
-            layui.table.on('tool(tablePage)', obj => {
-                const row = obj.data; // 获得当前行数据
-                const layEvent = obj.event; // 获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-                const tr = obj.tr; // 获得当前行 tr 的DOM对象
-                if (layEvent === 'detail') { //查看
-                    this.detail(row);
-                } else if (layEvent === 'del') { //删除
-                    layer.confirm('真的删除行么', index => {
-                        layer.close(index);
-                        this.del(row, () => {
-                            obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-                        });
-                    });
-                } else if (layEvent === 'edit') { //编辑
-                    this.edit(row, obj);
-                }
-            });
+            const _this = this;
+            
+            this.getcategoryTree({
+                
+            }, data => {
+                this.categoryData = data;
+                const htmlStr = Template('tpl-tree', { data });
+                $('.tree-components').html(htmlStr);
+            })
 
             $('#add').on('click', () => {
                 this.edit({}, false);
             })
-        }
-        detail(row) {
-            window.open('../detail/index.html?id=' + row.id);
+
+            $('.tree-components').on('click', '.edit', function() {
+                const id = $(this).data('id');
+                const type = $(this).data('type');
+                const data = _this.getcategoryById(id, type);
+                _this.edit(data);
+            })
         }
         edit(row, obj) {
             const content = Template('tpl', row);
@@ -84,8 +66,8 @@ $(function () {
                 console.log(formData);
                 if (formData.id) {
                     this.update(formData, () => {
-                        obj && obj.update(formData);
                         layer.close(layerIndex);
+                        window.location.reload();
                     })
                 } else {
                     delete formData.id;
@@ -149,6 +131,41 @@ $(function () {
                     }
                 }
             })
+        }
+        getcategoryTree(querys, cb) {
+            Toolkit.ajax({
+                url: '/Category/tree',
+                data: querys,
+                success: res => {
+                    if (res.success) {
+                        cb && cb(res.data);
+                    }
+                }
+            })
+        }
+        getcategoryById(id, type) {
+            let data;
+            if (type === 'paraent') {
+                for (let index = 0; index < this.categoryData.length; index++) {
+                    const item = this.categoryData[index];
+                    if (item.id === id) {
+                        data = item;
+                        break;
+                    }
+                }
+            } else {
+                for (let index = 0; index < this.categoryData.length; index++) {
+                    const item = this.categoryData[index];
+                    for (let index = 0; index < item.child.length; index++) {
+                        const c = item.child[index];
+                        if (c.id === id) {
+                            data = c;
+                            break;
+                        }
+                    }
+                }
+            }
+            return data;
         }
     }
 

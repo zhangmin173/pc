@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-06-01 08:35:53 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-07 09:06:37
+ * @Last Modified time: 2018-06-21 21:54:48
  */
 
 import Toolkit from '../../../../components/toolkit';
@@ -67,7 +67,7 @@ $(function () {
             const layerIndex = layer.open({
                 type: 1,
                 title: '编辑',
-                closeBtn: 0,
+                closeBtn: 1,
                 area: '800px',
                 shadeClose: true,
                 content

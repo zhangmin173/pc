@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%= require('html-loader!../../../../common/layout/admin/_header.html') %>
+    <% if (htmlWebpackPlugin.files.favicon) { %>
+      <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
+      <% } %>
+        <title>后台管理系统</title>
+        <% if (htmlWebpackPlugin.files.css.length == 1) { %>
+          <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+          <% } %>
+            <% if (htmlWebpackPlugin.files.css.length == 2) { %>
+              <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+              <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[1] %>">
+              <% } %>
+                <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>
+</head>
+
+<body class="layui-layout-body">
+  <div class="layui-layout layui-layout-admin">
+    <%= require('html-loader!../../../../common/layout/admin/_nav.html') %>
+      <%= require('html-loader!../../../../common/layout/admin/_menu.html') %>
+        <div class="layui-body">
+            <div class="layui-btn-group">
+              <!-- <button id="add" class="layui-btn">增加</button> -->
+            </div>
+            <div class="tree-components">
+              
+            </div>
+        </div>
+        <%= require('html-loader!../../../../common/layout/admin/_footer.html') %>
+  </div>
+  <script type="text/html" id="tpl-tree">
+    {{ each data as item }}
+    <div class="tree-item">
+      <div class="tree-paraent">{{item.category_title}}<span class="layui-btn layui-btn-normal layui-btn-xs edit" data-id="{{item.id}}" data-type="paraent">编辑</span></div>
+      {{if item.child}}
+        {{ each item.child as c}}
+        <div class="tree-child"> - {{c.category_title}}<span class="layui-btn layui-btn-normal layui-btn-xs edit" data-id="{{c.id}}" data-type="child">编辑</span></div>
+        {{/each}}
+      {{/if}}
+    </div>
+    {{/each}}
+  </script>
+  <script type="text/html" id="tableBar">
+    <!-- <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a> -->
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+  </script>
+  <script type="text/html" id="tpl">
+    <form class="layui-form edit-form" lay-filter="editorForm">
+      <div class="layui-form-item hidden">
+        <label class="layui-form-label">id</label>
+        <div class="layui-input-block">
+          <input value="{{id}}" type="text" name="id" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">上级栏目</label>
+        <div class="layui-input-block">
+          <select id="paraent_id" name="paraent_id" lay-filter="paraent_id">
+            
+          </select>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">栏目名称</label>
+        <div class="layui-input-block">
+          <input value="{{category_title}}" type="text" name="category_title" required  lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="layui-btn" lay-submit lay-filter="editForm">保存</button>
+        </div>
+      </div>
+    </form>   
+  </script>
+  <script type="text/html" id="tpl1">
+    <option value=""></option>
+    {{ each data as item }}
+    <option value="{{item.id}}">{{item.category_title}}</option>
+    {{/each}}
+  </script>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
+</body>
+
+</html>

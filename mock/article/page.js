@@ -11,7 +11,7 @@ function mock() {
                 author: 'zhangmin',
                 show_time: '2018-06-08',
                 summary: '文章概要',
-                thumb: '',
+                thumb: '//nextdog.cc/public/assets/bg.jpg',
                 content: '文章内容',
                 link: 'http://baidu.com',
                 create_time: '2018-06-10'
@@ -24,7 +24,7 @@ function mock() {
                 author: 'zhangmin',
                 show_time: '2018-06-08',
                 summary: '文章概要',
-                thumb: '',
+                thumb: '//nextdog.cc/public/assets/bg.jpg',
                 content: '文章内容',
                 link: 'http://baidu.com',
                 create_time: '2018-06-10'
@@ -37,7 +37,7 @@ function mock() {
                 author: 'zhangmin',
                 show_time: '2018-06-08',
                 summary: '文章概要',
-                thumb: '',
+                thumb: '//nextdog.cc/public/assets/bg.jpg',
                 content: '文章内容',
                 link: 'http://baidu.com',
                 create_time: '2018-06-10'
@@ -50,7 +50,7 @@ function mock() {
                 author: 'zhangmin',
                 show_time: '2018-06-08',
                 summary: '文章概要',
-                thumb: '',
+                thumb: '//nextdog.cc/public/assets/bg.jpg',
                 content: '文章内容',
                 link: 'http://baidu.com',
                 create_time: '2018-06-10'
@@ -63,7 +63,7 @@ function mock() {
                 author: 'zhangmin',
                 show_time: '2018-06-08',
                 summary: '文章概要',
-                thumb: '',
+                thumb: '//nextdog.cc/public/assets/bg.jpg',
                 content: '文章内容',
                 link: 'http://baidu.com',
                 create_time: '2018-06-10'

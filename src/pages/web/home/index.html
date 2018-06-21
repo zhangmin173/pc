@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%= require('html-loader!../../../common/layout/_header.html') %>
+    <% if (htmlWebpackPlugin.files.favicon) { %>
+      <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
+      <% } %>
+        <title></title>
+        <% if (htmlWebpackPlugin.files.css.length == 1) { %>
+          <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+          <% } %>
+            <% if (htmlWebpackPlugin.files.css.length == 2) { %>
+              <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+              <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[1] %>">
+              <% } %>
+                <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>
+</head>
+
+<body>
+  <header class="web-header" id="header"></header>
+  <nav class="web-nav">
+    <div class="title"></div>
+    <ul class="menu">
+
+    </ul>
+  </nav>
+  <div class="container">
+      <div class="section">
+            <div class="left">
+
+            </div>
+            <div class="right">
+                
+            </div>
+      </div>
+      <div class="section">
+        <div class="title">企业风采</div>
+      </div>
+  </div>
+  <script type="text/html" id="tpl1">
+    {{ each data as item }}
+    <li><a href="../category/index.html?id={{item.id}}">{{item.category_title}}</a></li>
+    {{/each}}
+  </script>
+  <script type="text/html" id="tpl-block1">
+    {{ each data as item }}
+    <a href="../article/index.html?id={{item.id}}" style="background-image:url('{{item.thumb}}')">{{item.title}}</a>
+    {{/each}}
+  </script>
+  <script type="text/html" id="tpl-block2">
+    {{ each data as item }}
+    <a href="../article/index.html?id={{item.id}}">{{item.category_title}}</a>
+    {{/each}}
+  </script>
+  <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
+</body>
+
+</html>

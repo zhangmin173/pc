@@ -2,7 +2,7 @@
  * @Author: 张敏 
  * @Date: 2018-04-17 08:41:11 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-14 00:41:59
+ * @Last Modified time: 2018-06-21 22:01:36
  */
 
 /**
@@ -33,6 +33,28 @@ const Toolkit = (function () {
       if (window.location.href.indexOf('nextdog.cc') > -1) {
         _default.url = 'http://nextdog.cc' + _default.url
       }
+      $.ajax(_default);
+    },
+    fetch(options) {
+      let _default = {
+        url: options.url,
+        type: options.type || 'post',
+        data: options.data || {},
+        success: (res) => {
+          // console.log(res);
+          options.success && options.success(res);
+        },
+        error: (err) => {
+          options.error && options.error(err);
+        },
+        complete: () => {
+          options.complete && options.complete();
+        }
+      };
+      if (window.location.href.indexOf('nextdog.cc') > -1) {
+        _default.url = 'http://nextdog.cc' + _default.url
+      }
+      _default.data.web_id = 'C4C54850-46A1-BE67-14E5-79D1AF46FC48';
       $.ajax(_default);
     },
     /**

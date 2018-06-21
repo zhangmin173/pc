@@ -145,7 +145,7 @@ class Category extends Base
         return $this->ajax($this->data);
     }
 
-    public function crumbs()
+    public function tree()
     {
         $map['web_id'] = $this->user['web_info']['id'];
         $map['paraent_id'] = 0;
