@@ -59,7 +59,7 @@ class Article extends Base
             $map['category_ids'] = ['like','%'.$params['category_ids'].'%'];
         }
         if (isset($params['category_id'])) {
-            $map['category_ids'] = $params['category_id'];
+            $map['category_id'] = $params['category_id'];
         }
 
         $db = $this->db;
@@ -88,7 +88,7 @@ class Article extends Base
             $map['category_ids'] = ['like','%'.$params['category_ids'].'%'];
         }
         if (isset($params['category_id'])) {
-            $map['category_ids'] = $params['category_id'];
+            $map['category_id'] = $params['category_id'];
         }
 
         $db = $this->db;

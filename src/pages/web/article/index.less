@@ -1,0 +1,63 @@
+@import '../../../common/css/_var.less';
+
+.container {
+    display: flex;
+    padding-top: 30px;
+
+    .left {
+        width: 300px;
+        padding-right: 30px;
+
+        .title {
+            padding: 10px;
+            text-align: center;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .title-list {
+            background-color: @f0;
+        }
+    }
+
+    .title-list {
+
+         a {
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+            color: #000;
+            font-size: 12px;
+            border-bottom: 1px solid @e2;
+
+            &.active {
+                color: @c9;
+            }
+         }   
+    }
+
+    .right {
+        flex: 1;
+        background-color: @f0;
+        padding: 20px;
+
+        .title {
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .info {
+            padding: 10px 0;
+            font-size: 14px;
+            color: @d2;
+            text-align: center;
+            border-bottom: 1px solid @d2;
+        }
+
+        .thumb {
+            display: block;
+            width: 60%;
+            margin: 10px auto;
+        }
+    }
+}

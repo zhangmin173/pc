@@ -2,9 +2,10 @@
  * @Author: Zhang Min 
  * @Date: 2018-06-14 01:02:04 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-21 21:59:37
+ * @Last Modified time: 2018-06-23 11:02:43
  */
 
+import H5 from '../../../components/h5/index';
 import Toolkit from '../../../components/toolkit';
 import Template from '../../../../public/libs/artTemplate/index';
 import './index.less';
@@ -16,53 +17,28 @@ $(() => {
                 this.init()
             }
             init() {
-    
-                this.getWeb(data => {
-                    $('title').text(data.web_title);
-                    $('.web-header').text(data.web_organization);
-                    $('.web-nav .title').text(data.web_title);
-                })
-                this.getcaterogy(data => {
-                    this.categoryData = data;
-                    const htmlStr = Template('tpl1', { data });
-                    $('.menu').html(htmlStr);
-                })
+                H5.init(category => {
+                    this.getArticle(category[0].id, data => {
+                        const htmlStr = Template('tpl-block1', { data, category: category[0] });
+                        $('.left').html(htmlStr);
+                    })
+                    this.getArticle(category[1].id, data => {
+                        const htmlStr = Template('tpl-block2', { data, category: category[1] });
+                        $('.right').html(htmlStr);
+                        $('.right .title').text(category[1].category_title);
+                    })
+                    this.getArticle(category[2].id, data => {
+                        const htmlStr = Template('tpl-qiye', { data });
+                        $('.qiye-list').html(htmlStr);
+                        $('.qiye-title').text(category[2].category_title);
+                    })
+                });
             }
-            getWeb(cb) {
+            getArticle(category_id, cb) {
                 Toolkit.fetch({
-                    url: '/home/web/get',
-                    success: res => {
-                        if (res.success) {
-                            cb && cb(res.data)
-                        }
-                    }
-                })
-            }
-            getBlock1(cb) {
-                Toolkit.fetch({
-                    url: '/home/article/page',
-                    success: res => {
-                        if (res.success) {
-                            cb && cb(res.data)
-                        }
-                    }
-                })
-            }
-            getBlock2(cb) {
-                Toolkit.fetch({
-                    url: '/home/article/page',
-                    success: res => {
-                        if (res.success) {
-                            cb && cb(res.data)
-                        }
-                    }
-                })
-            }
-            getcaterogy(cb) {
-                Toolkit.fetch({
-                    url: '/category/all',
+                    url: '/home/article/all',
                     data: {
-                        paraent_id: 0
+                        category_id
                     },
                     success: res => {
                         if (res.success) {

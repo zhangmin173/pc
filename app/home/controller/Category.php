@@ -84,16 +84,11 @@ class Category extends Base
         return $this->ajax($this->data);
     }
 
-    public function crumbs()
+    public function tree()
     {
-        if (isset($params['web_id'])) {
-            $map['web_id'] = $params['web_id'];
-        } else {
-            $this->data['success'] = false;
-            $this->data['code'] = 1001;
-            return $this->ajax($this->data);
-        }
+        $params = input('');
 
+        $map['web_id'] = $params['web_id'];
         $map['paraent_id'] = 0;
         $map['is_delete'] = 0;
         if (!isset($params['order'])) {

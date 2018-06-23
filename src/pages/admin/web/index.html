@@ -27,7 +27,7 @@
         <%= require('html-loader!../../../common/layout/admin/_footer.html') %>
   </div>
   <script type="text/html" id="tpl">
-    <form class="layui-form edit-form">
+    <form class="layui-form edit-form" lay-filter="editForm">
       <div class="layui-form-item hidden">
         <label class="layui-form-label">id</label>
         <div class="layui-input-block">
@@ -61,7 +61,7 @@
           <div class="layui-form-item">
             <label class="layui-form-label">网站logo</label>
             <div class="layui-input-block">
-              <img id="webLogoView" src="{{webLogo}}" alt="">
+              <img id="webLogoView" src="{{web_logo}}" alt="">
             </div>
           </div>
           <div class="layui-form-item">
@@ -81,7 +81,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">网站头图</label>
         <div class="layui-input-block">
-          <img id="webHeadBgView" src="{{webHeadBg}}" alt="">
+          <img id="webHeadBgView" src="{{web_head_bg}}" alt="">
         </div>
       </div>
       <div class="layui-form-item">

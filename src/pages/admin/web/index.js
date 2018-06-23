@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-06-01 08:35:53 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-14 00:50:26
+ * @Last Modified time: 2018-06-23 12:12:36
  */
 
 import Toolkit from '../../../components/toolkit';
@@ -43,12 +43,13 @@ $(function() {
                             }
                         }
                     });
+                    layui.form.on('submit(editForm)', form => {
+                        const formData = form.field;
+                        delete formData.postFile;
+                        this.update(formData);
+                        return false;
+                    });
             })
-            layui.form.on('submit(loginForm)', form => {
-                const formData = form.field;
-                this.login(formData);
-                return false;
-            });
         }
         getInfo(cb) {
             Toolkit.ajax({
@@ -59,6 +60,17 @@ $(function() {
                     }
                 }
             })
+        }
+        update(data) {
+            Toolkit.ajax({
+                url: '/web/update',
+                data,
+                success: res => {
+                    if (res.success) {
+                        window.location.reload();
+                    }
+                }
+            })  
         }
     }
 

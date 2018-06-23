@@ -18,14 +18,30 @@
 </head>
 
 <body>
-  <header id="header">网站组织</header>
-  <nav>
-    <h1>网站标题</h1>
-    <ul>
-        <li><a href=""></a></li>
-    </ul>
-  </nav>
-  
+  <div id="head-components"></div>
+  <div class="container">
+    <div class="left">
+      
+    </div>
+    <div class="right">
+      
+    </div>
+  </div>
+  <div id="copyright-components"></div>
+  <script type="text/html" id="tpl-left">
+    <div class="title">{{category.name}}</div>
+    <div class="title-list">
+      {{ each data as item }}
+      <a class="{{if activeId === item.id}}active{{/if}}" href="../article/index.html?id={{item.id}}&cid={{category.id}}&cname={{category.name}}">{{item.title}}</a>
+      {{/each}}
+    </div>
+  </script>
+  <script type="text/html" id="tpl-article">
+    <div class="title">{{title}}</div>
+    <div class="info">作者：{{author}} 发布日期： {{show_titme}}</div>
+    <img class="thumb" src="{{thumb}}" alt="{{title}}">
+    <div class="content">{{content}}</div>
+  </script>
   <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
 </body>
 
