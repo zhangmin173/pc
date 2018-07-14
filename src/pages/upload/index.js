@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-04-28 08:57:30 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-12 22:52:06
+ * @Last Modified time: 2018-07-14 12:10:30
  */
 
 import Toolkit from '../../components/toolkit';
@@ -20,6 +20,7 @@ $(function () {
             this.createDom(this.typelist);
             Toolkit.uploadInit('file',data => {
                 this.filePath = data.file_path;
+                $('.tip').text('上传成功');
             })
 
             this.event();
